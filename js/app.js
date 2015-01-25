@@ -14,6 +14,7 @@ app.controller('gameController',function($scope){
        socket = io();
         $scope.askedPlayerId = 0;
         $scope.showName = 1;
+        $scope.turn = false;
         $scope.player = null;
         $scope.disableButton = false;
         socket.on('playersInfoObject',function(players){
@@ -27,12 +28,16 @@ app.controller('gameController',function($scope){
         });
         socket.on('resultAsk',function(player,found){
             if(found==0)
+            {
                 $scope.message = "Go Fish!";
-            else
+                $scope.turn = false;
+            }
+                else
                 $scope.message = "Bingo!!"
             $scope.$apply($scope.message);
             $scope.player = player;
             $scope.$apply($scope.player);
+            $scope.$apply($scope.false);
         });
         
         socket.on('gameOver',function(player){
@@ -54,6 +59,16 @@ app.controller('gameController',function($scope){
                }
            }
         
+        });
+        
+        socket.on('turn',function(id){
+        $scope.turn = false;
+       
+               if($scope.player.p_id == id)
+               {
+                   $scope.turn = true;
+               }
+            $scope.$apply($scope.turn);
         });
     }
 });

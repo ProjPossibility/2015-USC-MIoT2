@@ -45,6 +45,7 @@ var Player = function(id,name,cards)
     for(i=1;i<14;i++)
         self.stackCount[i] = 0;
     self.numberOfStacks = 0;
+    self.turn = false;
     return self;
 }
 
@@ -197,15 +198,17 @@ var gameEnd = function(){
     });
 
     io.on('connection', function(socket){
-        num_players++;
-        var newPlayer;
+     
+       var newPlayer;
+        socket.on('requestCards',function(name){
+               num_players++;
+     
         if(num_players==1)
         {
             createDeck();
+            
         }
 
-    
-        socket.on('requestCards',function(name){
             stackShuffle();
             var player_cards =  new Array(NUM_DEAL);
    
@@ -215,6 +218,8 @@ var gameEnd = function(){
                 player_cards[i] = cardReturned;
             }
             newPlayer = new Player(socket.id,name,player_cards);
+           
+             
             for(i =0;i< NUM_DEAL;i++)
             {
                 //console.log(indexOf(player_cards[i].rank));
@@ -234,8 +239,13 @@ var gameEnd = function(){
             displayStack(newPlayer.stackCount);
             Players.push(newPlayer);
             
+            
             socket.emit('sendCards',newPlayer);
-        
+             if(num_players == 1)
+             {
+                 console.log("Emiting turn for 1st player");
+                socket.emit('turn',newPlayer.p_id);
+             }
         });
     
    
@@ -251,7 +261,7 @@ var gameEnd = function(){
     
         socket.on('ask',function(number,p_id){
            console.log("Cards length"+Cards.length);
-           
+           var currPid = p_id;
             console.log("Number:"+number+"+Pid :"+p_id); 
             var askedCards = findCards(number,p_id);
             console.log("Asked Cards :"+askedCards.length);
@@ -319,6 +329,22 @@ var gameEnd = function(){
                // console.log("Player Removed:"+newPlayer.p_id);
                 Players.push(newPlayer);
                // console.log("Player Pushed:"+newPlayer.p_id);
+                newPlayer.turn = false;
+                
+                for(var i=0;i<Players.length;i++)
+                {
+                    if(Players[i].p_id == newPlayer.p_id)
+                    {
+                        console.log("i previous::: " +i);
+                        console.log("players length:::  "+ Players.length);
+                        i = (i+1)%Players.length;
+                        console.log("i later::: "+i);
+                        io.sockets.emit('turn',Players[i].p_id);
+                        break;
+                    }
+                    
+                }
+                
                 socket.emit("resultAsk",newPlayer,0);
                 console.log("Adding Go Fish "+card.rank);
                 displayStack(newPlayer.stackCount);
