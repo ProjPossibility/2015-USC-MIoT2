@@ -2,12 +2,23 @@ var app = angular.module('appModule',[]);
 var socket;
 app.controller('gameController',function($scope){
     $scope.sendName = function(){
-         socket.emit('myName', $scope.name);
+        socket.emit('myName', $scope.name);
         socket.emit('requestCards',$scope.name);
     }
     
     $scope.ask = function(){
         socket.emit('ask',$scope.number,$scope.askedPlayerId)
+    }
+    
+    $scope.selectCard = function(imgName) {
+        if(imgName.length > 2) {
+            $scope.number = imgName.charAt(0) + imgName.charAt(1);
+        }
+        else {
+            $scope.number = imgName.charAt(0);
+        }
+        
+        $scope.$apply($scope.number);
     }
     
     $scope.initialize = function(){
@@ -62,7 +73,7 @@ app.controller('gameController',function($scope){
         });
         
         socket.on('turn',function(id){
-        $scope.turn = false;
+        $scope.turn = false;    
        
                if($scope.player.p_id == id)
                {

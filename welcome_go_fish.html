@@ -75,7 +75,7 @@
         </div>
         <div class="col-xs-12">
             <div ng-repeat="card in player.p_cards" class="col-xs-1">
-                <img src="http://www-scf.usc.edu/~slodha/css12/cards/{{card.name}}.png">
+                <img ng-click="selectCard(card.name)" src="http://www-scf.usc.edu/~slodha/css12/cards/{{card.name}}.png" style="cursor: pointer;">
             </div>
         </div>
         <div class="col-sm-12">
