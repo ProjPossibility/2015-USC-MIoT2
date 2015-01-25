@@ -1,0 +1,108 @@
+body {
+    background: #000000;
+}
+label.error {
+    color: #F00;
+}
+h2{
+    text-align: center;
+    font-size: 30px;
+    color: rgba(255, 128, 0, 0.75); 
+}
+label, h3, h4, a {
+    color: rgba(255, 128, 0, 0.75); 
+}
+
+.dropdown {
+     max-width: 100%;
+}
+
+li a {
+    color: #FFF;
+    background: rgba(255, 128, 0, 0.50);
+}
+
+.tab-content {
+  -webkit-box-shadow: 0 0 2px 1px rgba(255, 128, 0, 0.50);
+  -moz-box-shadow: 0 0 2px 1px rgba(255, 128, 0, 0.50);
+   box-shadow: 0 0 2px 1px rgba(255, 128, 0, 0.50);
+   border-radius: 4px;
+}
+
+.btn {
+    background-color: rgba(255, 128, 0, 0.75);
+    border: none;
+}
+.footerDiv, .spanMessageDiv, .item{
+    color: #FFF;  
+    text-align: center;
+   	width: 70%;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.tab-content {
+     background-color: #FFF;
+}
+
+.item img{
+    display: center-block;
+}
+
+.carousel-caption {
+    position: static;
+    left:0;
+    right:0;
+    bottom:0;
+    padding: 15px;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.50);
+    border-radius: 3px;
+    height: 20%;
+}
+
+@media (max-width:600px){
+  .carousel-caption {
+     font-size:5px;
+   }
+}
+
+.carousel-indicators .active {
+    background-color: orange;
+}
+.carousel-indicators li {
+    border: 1px solid orange;
+}
+.carousel-indicators {
+    text-align: right;
+}
+
+@media screen and (max-width: 700px){
+    .carousel-caption p {
+        font-size: 13px;
+    }
+    .carousel-caption {
+        background: rgba(0, 0, 0, 0.55);
+    }
+    .carousel-control {
+        top: 10%;
+    }
+}
+
+.btn-facebook {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #2b4b90;
+  *background-color: #133783;
+  background-image: -moz-linear-gradient(top, #3b5998, #133783);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3b5998), to(#133783));
+  background-image: -webkit-linear-gradient(top, #3b5998, #133783);
+  background-image: -o-linear-gradient(top, #3b5998, #133783);
+  background-image: linear-gradient(to bottom, #3b5998, #133783);
+  background-repeat: repeat-x;
+  border-color: #133783 #133783 #091b40;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3b5998', endColorstr='#ff133783', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
