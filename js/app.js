@@ -17,7 +17,9 @@ app.controller('gameController',function($scope){
         else {
             $scope.number = imgName.charAt(0);
         }
-        
+         var myAudio = document.getElementById(imgName)
+         myAudio.src = "http://www-scf.usc.edu/~slodha/css12/voices/"+imgName+".mp3"
+         myAudio.play();
         $scope.$apply($scope.number);
     }
     
