@@ -70,22 +70,22 @@
             </div>
              <div class="form-group col-sm-4">
                     <label for="" class="control-label">Go, Test Your Luck!</label>
-                    <button class="btn btn-primary form-control" ng-disabled="!turn" ng-click="ask()">Ask For Cards</button>
+                    <button class="btn btn-primary form-control" ng-disabled="disableButton" ng-click="ask()">Ask For Cards</button>
              </div>
         </div>
-        <div class="col-xs-12">
-            <div ng-repeat="card in player.p_cards" class="col-xs-1">
-                <img ng-click="selectCard(card.name)" src="http://www-scf.usc.edu/~slodha/css12/cards/{{card.name}}.png" style="cursor: pointer;">
+        <div class="col-sm-12">
+            <div class="col-sm-12">
+                <img ng-repeat="card in player.p_cards"  src="http://www-scf.usc.edu/~slodha/css12/cards/{{card.name}}.png">
             </div>
         </div>
         <div class="col-sm-12">
                 <hr/>
-        </div>
+        </div>    
         <div class="col-sm-12">
             <div ng-repeat="player in players"  class="col-sm-3">
                 <label>{{player.p_name}}: {{player.numberOfStacks}}</label>
              </div>
         </div>
-      </div> 
+    </div> 
   </body>
 </html>
